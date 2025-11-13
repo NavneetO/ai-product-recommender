@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+🛍️ AI Product Recommendation System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive React + Node.js application that recommends products using AI (OpenAI GPT model) based on user preferences.
 
-## Available Scripts
+“Tell the AI what you’re looking for — it’ll recommend the perfect products for you.”
 
-In the project directory, you can run:
+🚀 Features
 
-### `npm start`
+🧠 AI-Powered Recommendations: Uses OpenAI’s GPT model to select the best products from a static product list.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+💬 Natural Language Input: Type queries like “I want a phone under $500 with a good camera.”
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+⚡ Real-Time Responses: See product suggestions and a brief explanation instantly.
 
-### `npm test`
+🎨 Modern UI: Built with React, TailwindCSS, and Lucide Icons.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🔌 Backend Integration: Node.js + Express server connects securely to the OpenAI API.
 
-### `npm run build`
+🧩 Project Structure
+product-recommender/
+│
+├── client/ (React frontend)
+│   ├── src/
+│   │   ├── App.js              # Main React component
+│   │   └── index.js            # React entry point
+│   ├── public/
+│   └── package.json
+│
+├── server.js                    # Node.js backend API
+├── .env                         # Contains your OpenAI API key
+├── README.md                    # Project documentation
+└── package.json                 # Backend dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+⚙️ Installation Guide
+1️⃣ Clone the Repository
+git clone https://github.com/yourusername/product-recommender.git
+cd product-recommender
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2️⃣ Install Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run this once in the root folder:
 
-### `npm run eject`
+npm install express cors openai dotenv
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Then inside the React app folder (if applicable):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+cd client
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🔐 Environment Setup
 
-## Learn More
+Create a .env file in your project root (same folder as server.js) and add your OpenAI API key:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+OPENAI_API_KEY=sk-your-real-openai-key-here
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+⚠️ Never commit your API key to GitHub or share it publicly.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+▶️ Running the App
+Step 1: Start Backend
 
-### Analyzing the Bundle Size
+In one terminal:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+node server.js
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Server runs on:
+👉 http://localhost:5000
 
-### Advanced Configuration
+Step 2: Start Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+In another terminal:
 
-### Deployment
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+Then visit
+👉 http://localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+💡 How It Works
+
+The user types a preference (e.g., “I want a phone under $500”).
+
+The React app sends this query to the Node.js backend (/api/recommend).
+
+The backend prompts OpenAI GPT with product data and returns a filtered recommendation list.
+
+The React app displays AI’s recommended products with an explanation.
+
+🧱 Tech Stack
+Layer	Technology
+Frontend	React (CRA), TailwindCSS, Lucide Icons
+Backend	Node.js, Express
+AI	OpenAI GPT API
+Environment	dotenv for secure key handling
+🧰 Example Query
+
+Input:
+
+I want a phone under $500 with good battery life.
+
+AI Output:
+
+Google Pixel 7 — excellent camera and battery, under $500.
+
+Motorola Edge 40 — OLED display, good battery performance.
+
+🧪 Troubleshooting
+Issue	Solution
+Error: Missing credentials	Ensure .env file is in the root with OPENAI_API_KEY.
+CORS error	Confirm backend is running on port 5000 and cors() is enabled.
+Invalid response from AI API	Update server.js to use chat.completions.create and return { content: response }.
+🧑‍💻 Future Improvements
+
+✅ Add real product images and links
+
+🔍 Filter by category, price, or specs
+
+🧾 Store user search history
+
+🧠 Cache frequent queries for faster responses
+
+📜 License
+
+This project is open-sourced under the MIT License.
