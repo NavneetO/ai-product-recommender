@@ -5,7 +5,11 @@ const OpenAI = require("openai");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+}));
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -21,7 +25,9 @@ app.post("/api/recommend", async (req, res) => {
       messages: [{ role: "user", content: prompt }],
       max_tokens: 500,
     });
-
+app.get("/", (req, res) => {
+  res.send("✅ AI Product Recommender backend is running!");
+});
     // Extract response text safely
     const aiResponse = completion.choices[0].message.content;
     res.json({ content: aiResponse });
@@ -30,5 +36,5 @@ app.post("/api/recommend", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-app.listen(5000, () => console.log("✅ Server running on http://localhost:5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
